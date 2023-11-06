@@ -28,7 +28,6 @@ public class RabbitMQProducer {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-
     //send for stock queue
     public void sendOrderToStock(Order order){
         LOGGER.info(String.format("Order sent to stock -> %s", order.toString()));
