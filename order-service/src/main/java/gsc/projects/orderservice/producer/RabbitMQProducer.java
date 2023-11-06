@@ -2,6 +2,7 @@ package gsc.projects.orderservice.producer;
 
 
 import gsc.projects.orderservice.model.Order;
+import gsc.projects.orderservice.model.OrderEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -29,17 +30,17 @@ public class RabbitMQProducer {
     }
 
     //send for stock queue
-    public void sendOrderToStock(Order order){
-        LOGGER.info(String.format("Order sent to stock -> %s", order.toString()));
+    public void sendOrderToStock(OrderEvent orderEvent){
+        LOGGER.info(String.format("Order sent to stock -> %s", orderEvent.toString()));
 
-        rabbitTemplate.convertAndSend(exchange, stockRoutingKey, order);
+        rabbitTemplate.convertAndSend(exchange, stockRoutingKey, orderEvent);
     }
 
     //send for email queue
-    public void sendOrderToEmail(Order order){
-        LOGGER.info(String.format("Order sent to email -> %s", order.toString()));
+    public void sendOrderToEmail(OrderEvent orderEvent){
+        LOGGER.info(String.format("Order sent to email -> %s", orderEvent.toString()));
 
-        rabbitTemplate.convertAndSend(exchange, emailRoutingKey, order);
+        rabbitTemplate.convertAndSend(exchange, emailRoutingKey, orderEvent);
     }
 
 }
