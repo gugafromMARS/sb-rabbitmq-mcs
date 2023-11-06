@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RabbitMQProducer {
-    
+
     private static final Logger LOGGER = LoggerFactory.getLogger(RabbitMQProducer.class);
 
     private RabbitTemplate rabbitTemplate;
@@ -29,12 +29,14 @@ public class RabbitMQProducer {
     }
 
 
+    //send for stock queue
     public void sendOrderToStock(Order order){
         LOGGER.info(String.format("Order sent to stock -> %s", order.toString()));
 
         rabbitTemplate.convertAndSend(exchange, stockRoutingKey, order);
     }
 
+    //send for email queue
     public void sendOrderToEmail(Order order){
         LOGGER.info(String.format("Order sent to email -> %s", order.toString()));
 
