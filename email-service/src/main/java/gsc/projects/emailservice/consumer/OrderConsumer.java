@@ -2,6 +2,7 @@ package gsc.projects.emailservice.consumer;
 
 
 import gsc.projects.emailservice.dto.Order;
+import gsc.projects.emailservice.dto.OrderEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -14,7 +15,7 @@ public class OrderConsumer {
 
 
     @RabbitListener(queues = {"${rabbitmq.queue.name}"})
-    public void consumer(Order order){
-        LOGGER.info(String.format("Order received on email service -> %s", order.toString()));
+    public void consumer(OrderEvent orderEvent){
+        LOGGER.info(String.format("Order received on email service -> %s", orderEvent.toString()));
     }
 }
