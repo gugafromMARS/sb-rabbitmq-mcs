@@ -34,7 +34,8 @@ docker run -d -p 15672:15672 -p 5672:5672 --hostname my-rabbitmq --name my-rabbi
 
 In this project you have only on option :
 
-**Send Order**
+* **Send Order**
+  
 You have a controller in order microservice thats your producer who going to send order to exchange.
 
 ## Authors
